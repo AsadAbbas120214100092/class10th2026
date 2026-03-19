@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- jsPDF Library for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- html2canvas for better PDF rendering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -326,7 +330,7 @@
             gap: 8px;
         }
 
-        .edit-btn, .delete-btn {
+        .edit-btn, .delete-btn, .download-btn {
             width: 35px;
             height: 35px;
             border-radius: 8px;
@@ -356,6 +360,16 @@
 
         .delete-btn:hover {
             background: #ff3838;
+            transform: scale(1.1);
+        }
+
+        .download-btn {
+            background: #28a745;
+            color: white;
+        }
+
+        .download-btn:hover {
+            background: #218838;
             transform: scale(1.1);
         }
 
@@ -648,6 +662,112 @@
             localStorage.setItem('class10Data', JSON.stringify(data));
         }
 
+        // ========== PDF DOWNLOAD FUNCTION ==========
+        function downloadRowAsPDF(type, id) {
+            const data = getData();
+            const item = data[type].find(item => item.id === id);
+            
+            if (!item) return;
+            
+            // Create PDF using jsPDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Add School Header
+            doc.setFontSize(18);
+            doc.setTextColor(40, 40, 100);
+            doc.text('The Smart School', 105, 20, { align: 'center' });
+            
+            doc.setFontSize(12);
+            doc.setTextColor(100, 100, 100);
+            doc.text('Bilal Campus Piplan', 105, 28, { align: 'center' });
+            
+            // Add Class Info
+            doc.setFontSize(14);
+            doc.setTextColor(0, 0, 0);
+            doc.text('Class 10th Boys - Session 2026-27', 105, 40, { align: 'center' });
+            
+            // Add Section Title
+            let sectionTitle = '';
+            switch(type) {
+                case 'teachers': sectionTitle = 'Teacher Record'; break;
+                case 'attendance': sectionTitle = 'Attendance Record'; break;
+                case 'studyPlan': sectionTitle = 'Study Plan'; break;
+                case 'classTest': sectionTitle = 'Class Test Report'; break;
+                case 'discipline': sectionTitle = 'Discipline Report'; break;
+                case 'examReport': sectionTitle = 'Exam Report'; break;
+            }
+            
+            doc.setFontSize(16);
+            doc.setTextColor(102, 126, 234);
+            doc.text(sectionTitle, 105, 55, { align: 'center' });
+            
+            // Draw a line
+            doc.setDrawColor(200, 200, 200);
+            doc.line(20, 60, 190, 60);
+            
+            // Add Student Details
+            let yPos = 75;
+            doc.setFontSize(12);
+            doc.setTextColor(50, 50, 50);
+            
+            // Format item data based on type
+            if (type === 'teachers') {
+                doc.text(`Name: ${item.name}`, 20, yPos); yPos += 8;
+                doc.text(`Subject: ${item.subject}`, 20, yPos); yPos += 8;
+                doc.text(`Qualification: ${item.qualification}`, 20, yPos); yPos += 8;
+                doc.text(`Experience: ${item.experience}`, 20, yPos);
+            } else if (type === 'attendance') {
+                doc.text(`Roll No.: ${item.rollNo}`, 20, yPos); yPos += 8;
+                doc.text(`Student Name: ${item.studentName}`, 20, yPos); yPos += 8;
+                doc.text(`Status: ${item.status}`, 20, yPos); yPos += 8;
+                doc.text(`Date: ${item.date}`, 20, yPos);
+            } else if (type === 'studyPlan') {
+                doc.text(`Subject: ${item.subject}`, 20, yPos); yPos += 8;
+                doc.text(`Topic: ${item.topic}`, 20, yPos); yPos += 8;
+                doc.text(`Date: ${item.date}`, 20, yPos); yPos += 8;
+                doc.text(`Teacher: ${item.teacher}`, 20, yPos);
+            } else if (type === 'classTest') {
+                doc.text(`Student Name: ${item.studentName}`, 20, yPos); yPos += 8;
+                doc.text(`Subject: ${item.subject}`, 20, yPos); yPos += 8;
+                doc.text(`Test No.: ${item.testNo}`, 20, yPos); yPos += 8;
+                doc.text(`Total Marks: ${item.totalMarks}`, 20, yPos); yPos += 8;
+                doc.text(`Obtained: ${item.obtained}`, 20, yPos); yPos += 8;
+                doc.text(`Date: ${item.date}`, 20, yPos);
+            } else if (type === 'discipline') {
+                doc.text(`Student Name: ${item.studentName}`, 20, yPos); yPos += 8;
+                doc.text(`Date: ${item.date}`, 20, yPos); yPos += 8;
+                doc.text(`Incident: ${item.incident}`, 20, yPos); yPos += 8;
+                doc.text(`Action Taken: ${item.action}`, 20, yPos);
+            } else if (type === 'examReport') {
+                doc.text(`Student Name: ${item.studentName}`, 20, yPos); yPos += 8;
+                doc.text(`Exam Name: ${item.examName}`, 20, yPos); yPos += 8;
+                doc.text(`Subject: ${item.subject}`, 20, yPos); yPos += 8;
+                doc.text(`Total Marks: ${item.totalMarks}`, 20, yPos); yPos += 8;
+                doc.text(`Obtained: ${item.obtained}`, 20, yPos); yPos += 8;
+                doc.text(`Percentage: ${item.percentage}`, 20, yPos); yPos += 8;
+                doc.text(`Grade: ${item.grade}`, 20, yPos);
+            }
+            
+            // Add Footer
+            yPos = 250;
+            doc.setFontSize(10);
+            doc.setTextColor(150, 150, 150);
+            doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 105, yPos, { align: 'center' });
+            doc.text('Designed by Teacher Asad Abbas', 105, yPos + 8, { align: 'center' });
+            
+            // Save PDF with appropriate filename
+            let filename = '';
+            if (type === 'teachers') filename = `Teacher_${item.name}.pdf`;
+            else if (type === 'attendance') filename = `Attendance_${item.studentName}.pdf`;
+            else if (type === 'studyPlan') filename = `StudyPlan_${item.subject}.pdf`;
+            else if (type === 'classTest') filename = `Test_${item.studentName}.pdf`;
+            else if (type === 'discipline') filename = `Discipline_${item.studentName}.pdf`;
+            else if (type === 'examReport') filename = `Exam_${item.studentName}.pdf`;
+            
+            doc.save(filename);
+        }
+
         // ========== EDITING FUNCTIONS ==========
         function enableEdit(type, id, element, field) {
             editingType = type;
@@ -889,7 +1009,7 @@
                         <tbody>
             `;
             
-            // Table Rows based on section
+            // Table Rows based on section with Download button
             if (section === 'teachers') {
                 data.teachers.forEach(item => {
                     html += `
@@ -900,6 +1020,7 @@
                             <td ondblclick="enableEdit('teachers', ${item.id}, this, 'experience')">${item.experience}</td>
                             <td class="action-buttons">
                                 <button class="edit-btn" onclick="enableEdit('teachers', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'name')"><i class="fas fa-edit"></i></button>
+                                <button class="download-btn" onclick="downloadRowAsPDF('teachers', ${item.id})"><i class="fas fa-download"></i></button>
                                 <button class="delete-btn" onclick="deleteItem('teachers', ${item.id})"><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
@@ -915,6 +1036,7 @@
                             <td ondblclick="enableEdit('attendance', ${item.id}, this, 'date')">${item.date}</td>
                             <td class="action-buttons">
                                 <button class="edit-btn" onclick="enableEdit('attendance', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'rollNo')"><i class="fas fa-edit"></i></button>
+                                <button class="download-btn" onclick="downloadRowAsPDF('attendance', ${item.id})"><i class="fas fa-download"></i></button>
                                 <button class="delete-btn" onclick="deleteItem('attendance', ${item.id})"><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
@@ -930,6 +1052,7 @@
                             <td ondblclick="enableEdit('studyPlan', ${item.id}, this, 'teacher')">${item.teacher}</td>
                             <td class="action-buttons">
                                 <button class="edit-btn" onclick="enableEdit('studyPlan', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'subject')"><i class="fas fa-edit"></i></button>
+                                <button class="download-btn" onclick="downloadRowAsPDF('studyPlan', ${item.id})"><i class="fas fa-download"></i></button>
                                 <button class="delete-btn" onclick="deleteItem('studyPlan', ${item.id})"><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
@@ -947,6 +1070,7 @@
                             <td ondblclick="enableEdit('classTest', ${item.id}, this, 'date')">${item.date}</td>
                             <td class="action-buttons">
                                 <button class="edit-btn" onclick="enableEdit('classTest', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'studentName')"><i class="fas fa-edit"></i></button>
+                                <button class="download-btn" onclick="downloadRowAsPDF('classTest', ${item.id})"><i class="fas fa-download"></i></button>
                                 <button class="delete-btn" onclick="deleteItem('classTest', ${item.id})"><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
@@ -962,6 +1086,7 @@
                             <td ondblclick="enableEdit('discipline', ${item.id}, this, 'action')">${item.action}</td>
                             <td class="action-buttons">
                                 <button class="edit-btn" onclick="enableEdit('discipline', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'studentName')"><i class="fas fa-edit"></i></button>
+                                <button class="download-btn" onclick="downloadRowAsPDF('discipline', ${item.id})"><i class="fas fa-download"></i></button>
                                 <button class="delete-btn" onclick="deleteItem('discipline', ${item.id})"><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
@@ -980,6 +1105,7 @@
                             <td ondblclick="enableEdit('examReport', ${item.id}, this, 'grade')">${item.grade}</td>
                             <td class="action-buttons">
                                 <button class="edit-btn" onclick="enableEdit('examReport', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'studentName')"><i class="fas fa-edit"></i></button>
+                                <button class="download-btn" onclick="downloadRowAsPDF('examReport', ${item.id})"><i class="fas fa-download"></i></button>
                                 <button class="delete-btn" onclick="deleteItem('examReport', ${item.id})"><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
