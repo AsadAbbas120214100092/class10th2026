@@ -1,0 +1,1062 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10th Management System | Teacher Asad Abbas</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Login Page */
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header h2 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .login-header p i {
+            color: #ffd700;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 20px auto;
+            background: #f4f7fc;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            display: none;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #ffd700;
+        }
+
+        .school-name h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .school-name h1 i {
+            color: #ffd700;
+            margin-right: 10px;
+        }
+
+        .class-badge {
+            background: rgba(255,215,0,0.2);
+            padding: 5px 15px;
+            border-radius: 50px;
+            border: 1px solid #ffd700;
+            font-size: 14px;
+        }
+
+        .class-badge i {
+            color: #ffd700;
+            margin-right: 5px;
+        }
+
+        .designer-credit {
+            background: rgba(255,215,0,0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid #ffd700;
+            text-align: center;
+        }
+
+        .designer-credit p {
+            font-size: 14px;
+        }
+
+        .designer-credit i {
+            color: #ffd700;
+            margin: 0 5px;
+        }
+
+        .designer-name {
+            color: #ffd700;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .logout-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            padding: 15px 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #555;
+            font-weight: 500;
+            background: #f8f9fa;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.3);
+        }
+
+        .user-info {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f0f2f5;
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 25px;
+        }
+
+        /* Section Header */
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(102,126,234,0.3);
+        }
+
+        .section-header h2 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .section-header h2 i {
+            margin-right: 10px;
+        }
+
+        .add-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .add-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Table Container */
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow-x: auto;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            font-weight: 500;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        th:first-child {
+            border-radius: 10px 0 0 0;
+        }
+
+        th:last-child {
+            border-radius: 0 10px 0 0;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            color: #555;
+        }
+
+        tr:hover td {
+            background: #f8f9fa;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .edit-btn, .delete-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .edit-btn {
+            background: #667eea;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background: #5a67d8;
+            transform: scale(1.1);
+        }
+
+        .delete-btn {
+            background: #ff4757;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background: #ff3838;
+            transform: scale(1.1);
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(102,126,234,0.3);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon i {
+            font-size: 24px;
+        }
+
+        .stat-info h3 {
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .stat-info .number {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        /* Editable Input */
+        .editable-input {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 20px;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .modal-content input:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .modal-buttons button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .save-modal-btn {
+            background: #28a745;
+            color: white;
+        }
+
+        .save-modal-btn:hover {
+            background: #218838;
+        }
+
+        .cancel-modal-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .cancel-modal-btn:hover {
+            background: #c82333;
+        }
+
+        /* Footer */
+        .footer {
+            background: white;
+            padding: 20px 25px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .footer p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .footer i {
+            color: #ffd700;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .navbar {
+                flex-direction: column;
+            }
+            
+            .user-info {
+                margin-left: 0;
+                justify-content: center;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-container">
+        <div class="login-header">
+            <i class="fas fa-school" style="font-size: 50px; color: #667eea; margin-bottom: 20px;"></i>
+            <h2>Class 10th Management</h2>
+            <p><i class="fas fa-map-marker-alt"></i> The Smart School | Bilal Campus Piplan</p>
+            <p style="margin-top: 10px; color: #999;">Designed by Teacher Asad Abbas</p>
+        </div>
+        
+        <div class="input-group">
+            <label><i class="fas fa-user"></i> Username</label>
+            <input type="text" id="username" placeholder="Enter username" value="admin">
+        </div>
+        
+        <div class="input-group">
+            <label><i class="fas fa-lock"></i> Password</label>
+            <input type="password" id="password" placeholder="Enter password" value="admin123">
+        </div>
+        
+        <button class="login-btn" onclick="login()">
+            <i class="fas fa-sign-in-alt"></i> Login to Dashboard
+        </button>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" class="main-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="school-name">
+                <h1><i class="fas fa-school"></i> Class 10th Boys</h1>
+                <span class="class-badge"><i class="fas fa-user-graduate"></i> Session 2026-27</span>
+            </div>
+            <div class="designer-credit">
+                <p><i class="fas fa-code"></i> Designed by <span class="designer-name">Teacher Asad Abbas</span></p>
+            </div>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navbar">
+            <div class="nav-item active" onclick="showSection('teachers')">
+                <i class="fas fa-chalkboard-teacher"></i> Teachers
+            </div>
+            <div class="nav-item" onclick="showSection('attendance')">
+                <i class="fas fa-calendar-check"></i> Students Attendance
+            </div>
+            <div class="nav-item" onclick="showSection('studyPlan')">
+                <i class="fas fa-book-open"></i> Study Plan
+            </div>
+            <div class="nav-item" onclick="showSection('classTest')">
+                <i class="fas fa-pencil-alt"></i> Class Test Report
+            </div>
+            <div class="nav-item" onclick="showSection('discipline')">
+                <i class="fas fa-shield-alt"></i> Discipline Report
+            </div>
+            <div class="nav-item" onclick="showSection('examReport')">
+                <i class="fas fa-chart-line"></i> Series + Full Length Exam
+            </div>
+            <div class="user-info">
+                <div class="user-badge">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="loggedInUser">Admin</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content" id="mainContent">
+            <!-- Teachers Section by Default -->
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><i class="fas fa-copyright"></i> 2026 Class 10th Management System | The Smart School Bilal Campus Piplan</p>
+            <p style="margin-top: 5px;">Designed with <i class="fas fa-heart" style="color: #ff4d4d;"></i> by Teacher Asad Abbas</p>
+        </div>
+    </div>
+
+    <!-- Add/Edit Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Add New</h3>
+            <div id="modalBody"></div>
+            <div class="modal-buttons">
+                <button class="save-modal-btn" onclick="saveModalData()">Save</button>
+                <button class="cancel-modal-btn" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global Variables
+        let currentSection = 'teachers';
+        let editingId = null;
+        let editingType = null;
+
+        // ========== LOGIN SYSTEM ==========
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === 'admin' && password === 'admin123') {
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                document.getElementById('loggedInUser').textContent = 'Admin';
+                
+                loadDefaultData();
+                showSection('teachers');
+            } else {
+                alert('Invalid username or password!');
+            }
+        }
+
+        function logout() {
+            document.getElementById('loginPage').style.display = 'block';
+            document.getElementById('dashboard').style.display = 'none';
+        }
+
+        // ========== DATA STORAGE ==========
+        function loadDefaultData() {
+            if (!localStorage.getItem('class10Data')) {
+                const defaultData = {
+                    teachers: [
+                        { id: 1, name: 'Mr. Ahmed Khan', subject: 'Mathematics', qualification: 'M.Sc', experience: '8 years' },
+                        { id: 2, name: 'Mr. Usman Ali', subject: 'Physics', qualification: 'M.Phil', experience: '10 years' },
+                        { id: 3, name: 'Mr. Zafar Iqbal', subject: 'Chemistry', qualification: 'M.Sc', experience: '6 years' }
+                    ],
+                    attendance: [
+                        { id: 1, rollNo: '01', name: 'Ali Raza', status: 'Present', date: '19 Mar 2026' },
+                        { id: 2, rollNo: '02', name: 'Bilal Ahmed', status: 'Present', date: '19 Mar 2026' },
+                        { id: 3, rollNo: '03', name: 'Hassan Ali', status: 'Absent', date: '19 Mar 2026' }
+                    ],
+                    studyPlan: [
+                        { id: 1, subject: 'Mathematics', topic: 'Quadratic Equations', date: '20 Mar 2026', teacher: 'Mr. Ahmed', status: 'Pending' },
+                        { id: 2, subject: 'Physics', topic: 'Laws of Motion', date: '20 Mar 2026', teacher: 'Mr. Usman', status: 'Completed' },
+                        { id: 3, subject: 'Chemistry', topic: 'Chemical Reactions', date: '21 Mar 2026', teacher: 'Mr. Zafar', status: 'Pending' }
+                    ],
+                    classTest: [
+                        { id: 1, subject: 'Mathematics', testNo: 'Test 1', totalMarks: '50', obtained: '42', date: '15 Mar 2026', status: 'Pass' },
+                        { id: 2, subject: 'Physics', testNo: 'Test 1', totalMarks: '50', obtained: '38', date: '16 Mar 2026', status: 'Pass' },
+                        { id: 3, subject: 'Chemistry', testNo: 'Test 1', totalMarks: '50', obtained: '35', date: '17 Mar 2026', status: 'Pass' }
+                    ],
+                    discipline: [
+                        { id: 1, studentName: 'Ali Raza', date: '18 Mar 2026', incident: 'Late comirg', action: 'Warning' },
+                        { id: 2, studentName: 'Bilal Ahmed', date: '18 Mar 2026', incident: 'Uniform issue', action: 'Noted' },
+                        { id: 3, studentName: 'Hassan Ali', date: '19 Mar 2026', incident: 'Misbehavior', action: 'Called parents' }
+                    ],
+                    examReport: [
+                        { id: 1, examName: 'Series Test 1', subject: 'Mathematics', totalMarks: '100', obtained: '85', percentage: '85%', grade: 'A', rank: '5' },
+                        { id: 2, examName: 'Full Length 1', subject: 'Physics', totalMarks: '100', obtained: '78', percentage: '78%', grade: 'B+', rank: '8' },
+                        { id: 3, examName: 'Series Test 1', subject: 'Chemistry', totalMarks: '100', obtained: '82', percentage: '82%', grade: 'A', rank: '6' }
+                    ]
+                };
+                localStorage.setItem('class10Data', JSON.stringify(defaultData));
+            }
+        }
+
+        function getData() {
+            return JSON.parse(localStorage.getItem('class10Data')) || {};
+        }
+
+        function saveData(data) {
+            localStorage.setItem('class10Data', JSON.stringify(data));
+        }
+
+        // ========== EDITING FUNCTIONS ==========
+        function enableEdit(type, id, element, field) {
+            editingType = type;
+            editingId = id;
+            const currentValue = element.textContent;
+            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = currentValue;
+            input.className = 'editable-input';
+            input.dataset.field = field;
+            
+            element.innerHTML = '';
+            element.appendChild(input);
+            input.focus();
+            
+            input.onblur = function() {
+                saveEdit(type, id, element, input.value, field);
+            };
+            
+            input.onkeypress = function(e) {
+                if (e.key === 'Enter') {
+                    saveEdit(type, id, element, input.value, field);
+                }
+            };
+        }
+
+        function saveEdit(type, id, element, newValue, field) {
+            const data = getData();
+            
+            const item = data[type].find(item => item.id === id);
+            if (item) {
+                item[field] = newValue;
+                saveData(data);
+                element.textContent = newValue;
+            }
+        }
+
+        function deleteItem(type, id) {
+            if (confirm('Are you sure you want to delete this item?')) {
+                const data = getData();
+                data[type] = data[type].filter(item => item.id !== id);
+                saveData(data);
+                showSection(currentSection);
+            }
+        }
+
+        // ========== ADD NEW ITEMS ==========
+        function showAddModal(type) {
+            editingType = type;
+            editingId = null;
+            
+            let modalHtml = '';
+            
+            if (type === 'teachers') {
+                modalHtml = `
+                    <input type="text" id="modalName" placeholder="Teacher Name">
+                    <input type="text" id="modalSubject" placeholder="Subject">
+                    <input type="text" id="modalQualification" placeholder="Qualification">
+                    <input type="text" id="modalExperience" placeholder="Experience">
+                `;
+            } else if (type === 'attendance') {
+                modalHtml = `
+                    <input type="text" id="modalRollNo" placeholder="Roll No.">
+                    <input type="text" id="modalName" placeholder="Student Name">
+                    <input type="text" id="modalStatus" placeholder="Status (Present/Absent)">
+                    <input type="text" id="modalDate" placeholder="Date">
+                `;
+            } else if (type === 'studyPlan') {
+                modalHtml = `
+                    <input type="text" id="modalSubject" placeholder="Subject">
+                    <input type="text" id="modalTopic" placeholder="Topic">
+                    <input type="text" id="modalDate" placeholder="Date">
+                    <input type="text" id="modalTeacher" placeholder="Teacher">
+                    <input type="text" id="modalStatus" placeholder="Status">
+                `;
+            } else if (type === 'classTest') {
+                modalHtml = `
+                    <input type="text" id="modalSubject" placeholder="Subject">
+                    <input type="text" id="modalTestNo" placeholder="Test No.">
+                    <input type="text" id="modalTotalMarks" placeholder="Total Marks">
+                    <input type="text" id="modalObtained" placeholder="Obtained Marks">
+                    <input type="text" id="modalDate" placeholder="Date">
+                    <input type="text" id="modalStatus" placeholder="Status">
+                `;
+            } else if (type === 'discipline') {
+                modalHtml = `
+                    <input type="text" id="modalStudentName" placeholder="Student Name">
+                    <input type="text" id="modalDate" placeholder="Date">
+                    <input type="text" id="modalIncident" placeholder="Incident">
+                    <input type="text" id="modalAction" placeholder="Action Taken">
+                `;
+            } else if (type === 'examReport') {
+                modalHtml = `
+                    <input type="text" id="modalExamName" placeholder="Exam Name">
+                    <input type="text" id="modalSubject" placeholder="Subject">
+                    <input type="text" id="modalTotalMarks" placeholder="Total Marks">
+                    <input type="text" id="modalObtained" placeholder="Obtained Marks">
+                    <input type="text" id="modalPercentage" placeholder="Percentage">
+                    <input type="text" id="modalGrade" placeholder="Grade">
+                    <input type="text" id="modalRank" placeholder="Rank">
+                `;
+            }
+            
+            document.getElementById('modalTitle').textContent = 'Add New ' + 
+                (type === 'teachers' ? 'Teacher' : 
+                 type === 'attendance' ? 'Attendance Record' :
+                 type === 'studyPlan' ? 'Study Plan' :
+                 type === 'classTest' ? 'Test Record' :
+                 type === 'discipline' ? 'Discipline Record' : 'Exam Record');
+            document.getElementById('modalBody').innerHTML = modalHtml;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function saveModalData() {
+            const data = getData();
+            const newItem = { id: Date.now() };
+            
+            if (editingType === 'teachers') {
+                newItem.name = document.getElementById('modalName').value;
+                newItem.subject = document.getElementById('modalSubject').value;
+                newItem.qualification = document.getElementById('modalQualification').value;
+                newItem.experience = document.getElementById('modalExperience').value;
+            } else if (editingType === 'attendance') {
+                newItem.rollNo = document.getElementById('modalRollNo').value;
+                newItem.name = document.getElementById('modalName').value;
+                newItem.status = document.getElementById('modalStatus').value;
+                newItem.date = document.getElementById('modalDate').value;
+            } else if (editingType === 'studyPlan') {
+                newItem.subject = document.getElementById('modalSubject').value;
+                newItem.topic = document.getElementById('modalTopic').value;
+                newItem.date = document.getElementById('modalDate').value;
+                newItem.teacher = document.getElementById('modalTeacher').value;
+                newItem.status = document.getElementById('modalStatus').value;
+            } else if (editingType === 'classTest') {
+                newItem.subject = document.getElementById('modalSubject').value;
+                newItem.testNo = document.getElementById('modalTestNo').value;
+                newItem.totalMarks = document.getElementById('modalTotalMarks').value;
+                newItem.obtained = document.getElementById('modalObtained').value;
+                newItem.date = document.getElementById('modalDate').value;
+                newItem.status = document.getElementById('modalStatus').value;
+            } else if (editingType === 'discipline') {
+                newItem.studentName = document.getElementById('modalStudentName').value;
+                newItem.date = document.getElementById('modalDate').value;
+                newItem.incident = document.getElementById('modalIncident').value;
+                newItem.action = document.getElementById('modalAction').value;
+            } else if (editingType === 'examReport') {
+                newItem.examName = document.getElementById('modalExamName').value;
+                newItem.subject = document.getElementById('modalSubject').value;
+                newItem.totalMarks = document.getElementById('modalTotalMarks').value;
+                newItem.obtained = document.getElementById('modalObtained').value;
+                newItem.percentage = document.getElementById('modalPercentage').value;
+                newItem.grade = document.getElementById('modalGrade').value;
+                newItem.rank = document.getElementById('modalRank').value;
+            }
+            
+            data[editingType].push(newItem);
+            saveData(data);
+            closeModal();
+            showSection(currentSection);
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // ========== SECTION RENDERING ==========
+        function showSection(section) {
+            currentSection = section;
+            const data = getData();
+            
+            let html = '';
+            
+            // Section Header
+            let sectionTitle = '';
+            let addType = '';
+            
+            switch(section) {
+                case 'teachers':
+                    sectionTitle = 'Teachers Information';
+                    addType = 'teachers';
+                    break;
+                case 'attendance':
+                    sectionTitle = 'Students Attendance';
+                    addType = 'attendance';
+                    break;
+                case 'studyPlan':
+                    sectionTitle = 'Study Plan';
+                    addType = 'studyPlan';
+                    break;
+                case 'classTest':
+                    sectionTitle = 'Class Test Report';
+                    addType = 'classTest';
+                    break;
+                case 'discipline':
+                    sectionTitle = 'Discipline Report';
+                    addType = 'discipline';
+                    break;
+                case 'examReport':
+                    sectionTitle = 'Series + Full Length Exam Report';
+                    addType = 'examReport';
+                    break;
+            }
+            
+            html += `
+                <div class="section-header">
+                    <h2><i class="fas fa-${section === 'teachers' ? 'chalkboard-teacher' : 
+                        section === 'attendance' ? 'calendar-check' :
+                        section === 'studyPlan' ? 'book-open' :
+                        section === 'classTest' ? 'pencil-alt' :
+                        section === 'discipline' ? 'shield-alt' : 'chart-line'}"></i> ${sectionTitle}</h2>
+                    <button class="add-btn" onclick="showAddModal('${addType}')">
+                        <i class="fas fa-plus"></i> Add New
+                    </button>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+            `;
+            
+            // Table Headers based on section
+            if (section === 'teachers') {
+                html += `<th>Name</th><th>Subject</th><th>Qualification</th><th>Experience</th><th>Actions</th>`;
+            } else if (section === 'attendance') {
+                html += `<th>Roll No.</th><th>Student Name</th><th>Status</th><th>Date</th><th>Actions</th>`;
+            } else if (section === 'studyPlan') {
+                html += `<th>Subject</th><th>Topic</th><th>Date</th><th>Teacher</th><th>Status</th><th>Actions</th>`;
+            } else if (section === 'classTest') {
+                html += `<th>Subject</th><th>Test No.</th><th>Total Marks</th><th>Obtained</th><th>Date</th><th>Status</th><th>Actions</th>`;
+            } else if (section === 'discipline') {
+                html += `<th>Student Name</th><th>Date</th><th>Incident</th><th>Action Taken</th><th>Actions</th>`;
+            } else if (section === 'examReport') {
+                html += `<th>Exam Name</th><th>Subject</th><th>Total</th><th>Obtained</th><th>%</th><th>Grade</th><th>Rank</th><th>Actions</th>`;
+            }
+            
+            html += `
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+            
+            // Table Rows based on section
+            if (section === 'teachers') {
+                data.teachers.forEach(item => {
+                    html += `
+                        <tr>
+                            <td ondblclick="enableEdit('teachers', ${item.id}, this, 'name')">${item.name}</td>
+                            <td ondblclick="enableEdit('teachers', ${item.id}, this, 'subject')">${item.subject}</td>
+                            <td ondblclick="enableEdit('teachers', ${item.id}, this, 'qualification')">${item.qualification}</td>
+                            <td ondblclick="enableEdit('teachers', ${item.id}, this, 'experience')">${item.experience}</td>
+                            <td class="action-buttons">
+                                <button class="edit-btn" onclick="enableEdit('teachers', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'name')"><i class="fas fa-edit"></i></button>
+                                <button class="delete-btn" onclick="deleteItem('teachers', ${item.id})"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            } else if (section === 'attendance') {
+                data.attendance.forEach(item => {
+                    html += `
+                        <tr>
+                            <td ondblclick="enableEdit('attendance', ${item.id}, this, 'rollNo')">${item.rollNo}</td>
+                            <td ondblclick="enableEdit('attendance', ${item.id}, this, 'name')">${item.name}</td>
+                            <td ondblclick="enableEdit('attendance', ${item.id}, this, 'status')">${item.status}</td>
+                            <td ondblclick="enableEdit('attendance', ${item.id}, this, 'date')">${item.date}</td>
+                            <td class="action-buttons">
+                                <button class="edit-btn" onclick="enableEdit('attendance', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'rollNo')"><i class="fas fa-edit"></i></button>
+                                <button class="delete-btn" onclick="deleteItem('attendance', ${item.id})"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            } else if (section === 'studyPlan') {
+                data.studyPlan.forEach(item => {
+                    html += `
+                        <tr>
+                            <td ondblclick="enableEdit('studyPlan', ${item.id}, this, 'subject')">${item.subject}</td>
+                            <td ondblclick="enableEdit('studyPlan', ${item.id}, this, 'topic')">${item.topic}</td>
+                            <td ondblclick="enableEdit('studyPlan', ${item.id}, this, 'date')">${item.date}</td>
+                            <td ondblclick="enableEdit('studyPlan', ${item.id}, this, 'teacher')">${item.teacher}</td>
+                            <td ondblclick="enableEdit('studyPlan', ${item.id}, this, 'status')">${item.status}</td>
+                            <td class="action-buttons">
+                                <button class="edit-btn" onclick="enableEdit('studyPlan', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'subject')"><i class="fas fa-edit"></i></button>
+                                <button class="delete-btn" onclick="deleteItem('studyPlan', ${item.id})"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            } else if (section === 'classTest') {
+                data.classTest.forEach(item => {
+                    html += `
+                        <tr>
+                            <td ondblclick="enableEdit('classTest', ${item.id}, this, 'subject')">${item.subject}</td>
+                            <td ondblclick="enableEdit('classTest', ${item.id}, this, 'testNo')">${item.testNo}</td>
+                            <td ondblclick="enableEdit('classTest', ${item.id}, this, 'totalMarks')">${item.totalMarks}</td>
+                            <td ondblclick="enableEdit('classTest', ${item.id}, this, 'obtained')">${item.obtained}</td>
+                            <td ondblclick="enableEdit('classTest', ${item.id}, this, 'date')">${item.date}</td>
+                            <td ondblclick="enableEdit('classTest', ${item.id}, this, 'status')">${item.status}</td>
+                            <td class="action-buttons">
+                                <button class="edit-btn" onclick="enableEdit('classTest', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'subject')"><i class="fas fa-edit"></i></button>
+                                <button class="delete-btn" onclick="deleteItem('classTest', ${item.id})"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            } else if (section === 'discipline') {
+                data.discipline.forEach(item => {
+                    html += `
+                        <tr>
+                            <td ondblclick="enableEdit('discipline', ${item.id}, this, 'studentName')">${item.studentName}</td>
+                            <td ondblclick="enableEdit('discipline', ${item.id}, this, 'date')">${item.date}</td>
+                            <td ondblclick="enableEdit('discipline', ${item.id}, this, 'incident')">${item.incident}</td>
+                            <td ondblclick="enableEdit('discipline', ${item.id}, this, 'action')">${item.action}</td>
+                            <td class="action-buttons">
+                                <button class="edit-btn" onclick="enableEdit('discipline', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'studentName')"><i class="fas fa-edit"></i></button>
+                                <button class="delete-btn" onclick="deleteItem('discipline', ${item.id})"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            } else if (section === 'examReport') {
+                data.examReport.forEach(item => {
+                    html += `
+                        <tr>
+                            <td ondblclick="enableEdit('examReport', ${item.id}, this, 'examName')">${item.examName}</td>
+                            <td ondblclick="enableEdit('examReport', ${item.id}, this, 'subject')">${item.subject}</td>
+                            <td ondblclick="enableEdit('examReport', ${item.id}, this, 'totalMarks')">${item.totalMarks}</td>
+                            <td ondblclick="enableEdit('examReport', ${item.id}, this, 'obtained')">${item.obtained}</td>
+                            <td ondblclick="enableEdit('examReport', ${item.id}, this, 'percentage')">${item.percentage}</td>
+                            <td ondblclick="enableEdit('examReport', ${item.id}, this, 'grade')">${item.grade}</td>
+                            <td ondblclick="enableEdit('examReport', ${item.id}, this, 'rank')">${item.rank}</td>
+                            <td class="action-buttons">
+                                <button class="edit-btn" onclick="enableEdit('examReport', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'examName')"><i class="fas fa-edit"></i></button>
+                                <button class="delete-btn" onclick="deleteItem('examReport', ${item.id})"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            }
+            
+            html += `
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            document.getElementById('mainContent').innerHTML = html;
+            
+            // Update active nav
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
