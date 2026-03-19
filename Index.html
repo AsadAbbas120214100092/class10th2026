@@ -1,4 +1,4 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -359,59 +359,6 @@
             transform: scale(1.1);
         }
 
-        /* Stats Cards */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 10px 30px rgba(102,126,234,0.3);
-        }
-
-        .stat-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .stat-icon i {
-            font-size: 24px;
-        }
-
-        .stat-info h3 {
-            font-size: 14px;
-            font-weight: 400;
-            opacity: 0.9;
-        }
-
-        .stat-info .number {
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        /* Editable Input */
-        .editable-input {
-            width: 100%;
-            padding: 8px;
-            border: 2px solid #667eea;
-            border-radius: 6px;
-            font-size: 14px;
-        }
-
         /* Modal */
         .modal {
             display: none;
@@ -664,29 +611,29 @@
                         { id: 3, name: 'Mr. Zafar Iqbal', subject: 'Chemistry', qualification: 'M.Sc', experience: '6 years' }
                     ],
                     attendance: [
-                        { id: 1, rollNo: '01', name: 'Ali Raza', status: 'Present', date: '19 Mar 2026' },
-                        { id: 2, rollNo: '02', name: 'Bilal Ahmed', status: 'Present', date: '19 Mar 2026' },
-                        { id: 3, rollNo: '03', name: 'Hassan Ali', status: 'Absent', date: '19 Mar 2026' }
+                        { id: 1, rollNo: '01', studentName: 'Ali Raza', status: 'Present', date: '19 Mar 2026' },
+                        { id: 2, rollNo: '02', studentName: 'Bilal Ahmed', status: 'Present', date: '19 Mar 2026' },
+                        { id: 3, rollNo: '03', studentName: 'Hassan Ali', status: 'Absent', date: '19 Mar 2026' }
                     ],
                     studyPlan: [
-                        { id: 1, subject: 'Mathematics', topic: 'Quadratic Equations', date: '20 Mar 2026', teacher: 'Mr. Ahmed', status: 'Pending' },
-                        { id: 2, subject: 'Physics', topic: 'Laws of Motion', date: '20 Mar 2026', teacher: 'Mr. Usman', status: 'Completed' },
-                        { id: 3, subject: 'Chemistry', topic: 'Chemical Reactions', date: '21 Mar 2026', teacher: 'Mr. Zafar', status: 'Pending' }
+                        { id: 1, subject: 'Mathematics', topic: 'Quadratic Equations', date: '20 Mar 2026', teacher: 'Mr. Ahmed' },
+                        { id: 2, subject: 'Physics', topic: 'Laws of Motion', date: '20 Mar 2026', teacher: 'Mr. Usman' },
+                        { id: 3, subject: 'Chemistry', topic: 'Chemical Reactions', date: '21 Mar 2026', teacher: 'Mr. Zafar' }
                     ],
                     classTest: [
-                        { id: 1, subject: 'Mathematics', testNo: 'Test 1', totalMarks: '50', obtained: '42', date: '15 Mar 2026', status: 'Pass' },
-                        { id: 2, subject: 'Physics', testNo: 'Test 1', totalMarks: '50', obtained: '38', date: '16 Mar 2026', status: 'Pass' },
-                        { id: 3, subject: 'Chemistry', testNo: 'Test 1', totalMarks: '50', obtained: '35', date: '17 Mar 2026', status: 'Pass' }
+                        { id: 1, studentName: 'Ali Raza', subject: 'Mathematics', testNo: 'Test 1', totalMarks: '50', obtained: '42', date: '15 Mar 2026' },
+                        { id: 2, studentName: 'Bilal Ahmed', subject: 'Physics', testNo: 'Test 1', totalMarks: '50', obtained: '38', date: '16 Mar 2026' },
+                        { id: 3, studentName: 'Hassan Ali', subject: 'Chemistry', testNo: 'Test 1', totalMarks: '50', obtained: '35', date: '17 Mar 2026' }
                     ],
                     discipline: [
-                        { id: 1, studentName: 'Ali Raza', date: '18 Mar 2026', incident: 'Late comirg', action: 'Warning' },
+                        { id: 1, studentName: 'Ali Raza', date: '18 Mar 2026', incident: 'Late coming', action: 'Warning' },
                         { id: 2, studentName: 'Bilal Ahmed', date: '18 Mar 2026', incident: 'Uniform issue', action: 'Noted' },
                         { id: 3, studentName: 'Hassan Ali', date: '19 Mar 2026', incident: 'Misbehavior', action: 'Called parents' }
                     ],
                     examReport: [
-                        { id: 1, examName: 'Series Test 1', subject: 'Mathematics', totalMarks: '100', obtained: '85', percentage: '85%', grade: 'A', rank: '5' },
-                        { id: 2, examName: 'Full Length 1', subject: 'Physics', totalMarks: '100', obtained: '78', percentage: '78%', grade: 'B+', rank: '8' },
-                        { id: 3, examName: 'Series Test 1', subject: 'Chemistry', totalMarks: '100', obtained: '82', percentage: '82%', grade: 'A', rank: '6' }
+                        { id: 1, studentName: 'Ali Raza', examName: 'Series Test 1', subject: 'Mathematics', totalMarks: '100', obtained: '85', percentage: '85%', grade: 'A' },
+                        { id: 2, studentName: 'Bilal Ahmed', examName: 'Full Length 1', subject: 'Physics', totalMarks: '100', obtained: '78', percentage: '78%', grade: 'B+' },
+                        { id: 3, studentName: 'Hassan Ali', examName: 'Series Test 1', subject: 'Chemistry', totalMarks: '100', obtained: '82', percentage: '82%', grade: 'A' }
                     ]
                 };
                 localStorage.setItem('class10Data', JSON.stringify(defaultData));
@@ -765,7 +712,7 @@
             } else if (type === 'attendance') {
                 modalHtml = `
                     <input type="text" id="modalRollNo" placeholder="Roll No.">
-                    <input type="text" id="modalName" placeholder="Student Name">
+                    <input type="text" id="modalStudentName" placeholder="Student Name">
                     <input type="text" id="modalStatus" placeholder="Status (Present/Absent)">
                     <input type="text" id="modalDate" placeholder="Date">
                 `;
@@ -775,16 +722,15 @@
                     <input type="text" id="modalTopic" placeholder="Topic">
                     <input type="text" id="modalDate" placeholder="Date">
                     <input type="text" id="modalTeacher" placeholder="Teacher">
-                    <input type="text" id="modalStatus" placeholder="Status">
                 `;
             } else if (type === 'classTest') {
                 modalHtml = `
+                    <input type="text" id="modalStudentName" placeholder="Student Name">
                     <input type="text" id="modalSubject" placeholder="Subject">
                     <input type="text" id="modalTestNo" placeholder="Test No.">
                     <input type="text" id="modalTotalMarks" placeholder="Total Marks">
                     <input type="text" id="modalObtained" placeholder="Obtained Marks">
                     <input type="text" id="modalDate" placeholder="Date">
-                    <input type="text" id="modalStatus" placeholder="Status">
                 `;
             } else if (type === 'discipline') {
                 modalHtml = `
@@ -795,13 +741,13 @@
                 `;
             } else if (type === 'examReport') {
                 modalHtml = `
+                    <input type="text" id="modalStudentName" placeholder="Student Name">
                     <input type="text" id="modalExamName" placeholder="Exam Name">
                     <input type="text" id="modalSubject" placeholder="Subject">
                     <input type="text" id="modalTotalMarks" placeholder="Total Marks">
                     <input type="text" id="modalObtained" placeholder="Obtained Marks">
                     <input type="text" id="modalPercentage" placeholder="Percentage">
                     <input type="text" id="modalGrade" placeholder="Grade">
-                    <input type="text" id="modalRank" placeholder="Rank">
                 `;
             }
             
@@ -826,7 +772,7 @@
                 newItem.experience = document.getElementById('modalExperience').value;
             } else if (editingType === 'attendance') {
                 newItem.rollNo = document.getElementById('modalRollNo').value;
-                newItem.name = document.getElementById('modalName').value;
+                newItem.studentName = document.getElementById('modalStudentName').value;
                 newItem.status = document.getElementById('modalStatus').value;
                 newItem.date = document.getElementById('modalDate').value;
             } else if (editingType === 'studyPlan') {
@@ -834,27 +780,26 @@
                 newItem.topic = document.getElementById('modalTopic').value;
                 newItem.date = document.getElementById('modalDate').value;
                 newItem.teacher = document.getElementById('modalTeacher').value;
-                newItem.status = document.getElementById('modalStatus').value;
             } else if (editingType === 'classTest') {
+                newItem.studentName = document.getElementById('modalStudentName').value;
                 newItem.subject = document.getElementById('modalSubject').value;
                 newItem.testNo = document.getElementById('modalTestNo').value;
                 newItem.totalMarks = document.getElementById('modalTotalMarks').value;
                 newItem.obtained = document.getElementById('modalObtained').value;
                 newItem.date = document.getElementById('modalDate').value;
-                newItem.status = document.getElementById('modalStatus').value;
             } else if (editingType === 'discipline') {
                 newItem.studentName = document.getElementById('modalStudentName').value;
                 newItem.date = document.getElementById('modalDate').value;
                 newItem.incident = document.getElementById('modalIncident').value;
                 newItem.action = document.getElementById('modalAction').value;
             } else if (editingType === 'examReport') {
+                newItem.studentName = document.getElementById('modalStudentName').value;
                 newItem.examName = document.getElementById('modalExamName').value;
                 newItem.subject = document.getElementById('modalSubject').value;
                 newItem.totalMarks = document.getElementById('modalTotalMarks').value;
                 newItem.obtained = document.getElementById('modalObtained').value;
                 newItem.percentage = document.getElementById('modalPercentage').value;
                 newItem.grade = document.getElementById('modalGrade').value;
-                newItem.rank = document.getElementById('modalRank').value;
             }
             
             data[editingType].push(newItem);
@@ -929,13 +874,13 @@
             } else if (section === 'attendance') {
                 html += `<th>Roll No.</th><th>Student Name</th><th>Status</th><th>Date</th><th>Actions</th>`;
             } else if (section === 'studyPlan') {
-                html += `<th>Subject</th><th>Topic</th><th>Date</th><th>Teacher</th><th>Status</th><th>Actions</th>`;
+                html += `<th>Subject</th><th>Topic</th><th>Date</th><th>Teacher</th><th>Actions</th>`;
             } else if (section === 'classTest') {
-                html += `<th>Subject</th><th>Test No.</th><th>Total Marks</th><th>Obtained</th><th>Date</th><th>Status</th><th>Actions</th>`;
+                html += `<th>Student Name</th><th>Subject</th><th>Test No.</th><th>Total Marks</th><th>Obtained</th><th>Date</th><th>Actions</th>`;
             } else if (section === 'discipline') {
                 html += `<th>Student Name</th><th>Date</th><th>Incident</th><th>Action Taken</th><th>Actions</th>`;
             } else if (section === 'examReport') {
-                html += `<th>Exam Name</th><th>Subject</th><th>Total</th><th>Obtained</th><th>%</th><th>Grade</th><th>Rank</th><th>Actions</th>`;
+                html += `<th>Student Name</th><th>Exam Name</th><th>Subject</th><th>Total</th><th>Obtained</th><th>%</th><th>Grade</th><th>Actions</th>`;
             }
             
             html += `
@@ -965,7 +910,7 @@
                     html += `
                         <tr>
                             <td ondblclick="enableEdit('attendance', ${item.id}, this, 'rollNo')">${item.rollNo}</td>
-                            <td ondblclick="enableEdit('attendance', ${item.id}, this, 'name')">${item.name}</td>
+                            <td ondblclick="enableEdit('attendance', ${item.id}, this, 'studentName')">${item.studentName}</td>
                             <td ondblclick="enableEdit('attendance', ${item.id}, this, 'status')">${item.status}</td>
                             <td ondblclick="enableEdit('attendance', ${item.id}, this, 'date')">${item.date}</td>
                             <td class="action-buttons">
@@ -983,7 +928,6 @@
                             <td ondblclick="enableEdit('studyPlan', ${item.id}, this, 'topic')">${item.topic}</td>
                             <td ondblclick="enableEdit('studyPlan', ${item.id}, this, 'date')">${item.date}</td>
                             <td ondblclick="enableEdit('studyPlan', ${item.id}, this, 'teacher')">${item.teacher}</td>
-                            <td ondblclick="enableEdit('studyPlan', ${item.id}, this, 'status')">${item.status}</td>
                             <td class="action-buttons">
                                 <button class="edit-btn" onclick="enableEdit('studyPlan', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'subject')"><i class="fas fa-edit"></i></button>
                                 <button class="delete-btn" onclick="deleteItem('studyPlan', ${item.id})"><i class="fas fa-trash"></i></button>
@@ -995,14 +939,14 @@
                 data.classTest.forEach(item => {
                     html += `
                         <tr>
+                            <td ondblclick="enableEdit('classTest', ${item.id}, this, 'studentName')">${item.studentName}</td>
                             <td ondblclick="enableEdit('classTest', ${item.id}, this, 'subject')">${item.subject}</td>
                             <td ondblclick="enableEdit('classTest', ${item.id}, this, 'testNo')">${item.testNo}</td>
                             <td ondblclick="enableEdit('classTest', ${item.id}, this, 'totalMarks')">${item.totalMarks}</td>
                             <td ondblclick="enableEdit('classTest', ${item.id}, this, 'obtained')">${item.obtained}</td>
                             <td ondblclick="enableEdit('classTest', ${item.id}, this, 'date')">${item.date}</td>
-                            <td ondblclick="enableEdit('classTest', ${item.id}, this, 'status')">${item.status}</td>
                             <td class="action-buttons">
-                                <button class="edit-btn" onclick="enableEdit('classTest', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'subject')"><i class="fas fa-edit"></i></button>
+                                <button class="edit-btn" onclick="enableEdit('classTest', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'studentName')"><i class="fas fa-edit"></i></button>
                                 <button class="delete-btn" onclick="deleteItem('classTest', ${item.id})"><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
@@ -1027,15 +971,15 @@
                 data.examReport.forEach(item => {
                     html += `
                         <tr>
+                            <td ondblclick="enableEdit('examReport', ${item.id}, this, 'studentName')">${item.studentName}</td>
                             <td ondblclick="enableEdit('examReport', ${item.id}, this, 'examName')">${item.examName}</td>
                             <td ondblclick="enableEdit('examReport', ${item.id}, this, 'subject')">${item.subject}</td>
                             <td ondblclick="enableEdit('examReport', ${item.id}, this, 'totalMarks')">${item.totalMarks}</td>
                             <td ondblclick="enableEdit('examReport', ${item.id}, this, 'obtained')">${item.obtained}</td>
                             <td ondblclick="enableEdit('examReport', ${item.id}, this, 'percentage')">${item.percentage}</td>
                             <td ondblclick="enableEdit('examReport', ${item.id}, this, 'grade')">${item.grade}</td>
-                            <td ondblclick="enableEdit('examReport', ${item.id}, this, 'rank')">${item.rank}</td>
                             <td class="action-buttons">
-                                <button class="edit-btn" onclick="enableEdit('examReport', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'examName')"><i class="fas fa-edit"></i></button>
+                                <button class="edit-btn" onclick="enableEdit('examReport', ${item.id}, this.parentElement.parentElement.querySelectorAll('td')[0], 'studentName')"><i class="fas fa-edit"></i></button>
                                 <button class="delete-btn" onclick="deleteItem('examReport', ${item.id})"><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
